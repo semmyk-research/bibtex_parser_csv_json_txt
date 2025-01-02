@@ -270,6 +270,7 @@ def main():
             This app converts BibTeX files into CSV, JSON, and extracts DOIs into a text file.
             You can upload one or more BibTeX files, or paste the BibTeX content directly.
             The app will combine all the content into a single dataset.
+            <br> <a href="https://github.com/semmyk-research/bibtex_parser_csv_json_txt">Github: semmyk-research/bibtex_parser_csv_json_txt</a>
         </p>
     """, unsafe_allow_html=True)
 
