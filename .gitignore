@@ -1,0 +1,34 @@
+# general
+app.log
+*.log
+*copy*
+develop.md
+
+# Virtualenv .venv
+venv/
+*.env
+Scripts/
+Include/
+Lib/
+share/
+etc/
+pyvenv.cfg
+.aider*
+.env
+.venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# PyInstaller
+# Usually these files are written by a python script
+dist/
+build/
+
+# PyCharm
+#.idea/
