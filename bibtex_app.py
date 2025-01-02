@@ -129,7 +129,7 @@ def show_json_modal(json_data, json_preview_entries_count=2, key_prefix=None):
     else:
         modal = Modal(title="JSON Preview", key=modal_key)
         with modal.container():
-            st.markdown(
+            '''st.markdown(
                 f"""
                 <div style="max-height:60vh; overflow-y:auto;">
                     <pre style="white-space:pre-wrap; word-break:break-word; color:var(--text-color);">
@@ -138,7 +138,10 @@ def show_json_modal(json_data, json_preview_entries_count=2, key_prefix=None):
                 </div>
                 """,
                 unsafe_allow_html=True,
-            )
+            )'''
+            st.code(
+                format_json_content(json_data, json_preview_entries_count),
+                language='json')
         if modal.is_open():
             st.session_state[is_modal_open_key] = True
         else:
