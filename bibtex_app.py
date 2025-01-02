@@ -168,7 +168,8 @@ def extract_bibtex_entries(bibtex_content, preview_entries_count):
         return ""
     
     limited_entries = entries[:preview_entries_count]
-    logger.debug(f"[extract_bibtex_entries]: limited_entries: {"\n".join(limited_entries)}")
+    #logger.debug(f"[extract_bibtex_entries]: limited_entries: {"\n".join(limited_entries)}")
+    logger.debug(f"[extract_bibtex_entries]: limited_entries:")
     return "\n".join(limited_entries)
 
 # Function to process BibTeX data and update session state
