@@ -1,3 +1,6 @@
+##SemmyK-research: # BibTeX Converter
+#This Streamlit application converts BibTeX files into CSV, JSON, and extracts DOIs into a text file. It allows users to upload BibTeX files or paste BibTeX content directly, and then provides options to download the converted data and preview it.
+
 import streamlit as st
 import bibtexparser
 import pandas as pd
@@ -94,12 +97,14 @@ def download_button(file_data, file_name, button_label, mime_type):
 # Function to display JSON in a modal
 #def show_json_modal(json_data):
 #def show_json_modal(json_data, key_prefix=None):
-#def ModalComponent(json_data, json_preview_entries_count, key_prefix=None): # this all component is handled and passed json string including default styling. Also fixes state via function arguments and will reuse all those functions as  pure methods, where all  code can follow using standard procedural coding-style from component's own logic using helper methods. That is way a UI/rendering has better reliability in apps
-#def ModalComponent(json_data, json_preview_entries_count=2, key_prefix=None):
-#def show_json_modal(json_data, json_preview_entries_count=2 ,key_prefix=None):  # UI state , all  local + callback (where python UI does session) by html component UI methods + proper data handling format (also edge handling of bad json/string) including their type format checking via these all method scopes.
-#def show_json_modal(json_data, json_preview_entries_count=2, key_prefix=None): # Component (function  type) based local state variable management and  UI styles handling (from that all layout + string parsing type formatting using that scopes via method /function calls via methods.
 def show_json_modal(json_data, json_preview_entries_count=2, key_prefix=None):
-    """Displays formatted parsed JSON in a modal using streamlit_modal."""
+    """Displays formatted parsed JSON in a modal using streamlit_modal.
+
+    Args:
+        json_data (str): The JSON data to display.
+        json_preview_entries_count (int, optional): The number of entries to preview if the JSON data is a list. Defaults to 2.
+        key_prefix (str, optional): A unique prefix for the modal's keys. Defaults to None.
+    """
 
     if key_prefix is None:
         key_prefix = str(hash(json_data))
@@ -112,7 +117,15 @@ def show_json_modal(json_data, json_preview_entries_count=2, key_prefix=None):
         st.session_state[is_modal_open_key] = False
 
     def format_json_content(json_data_text, count_from_component_var):
-        """Formats JSON data for display, handling errors and escaping"""
+        """Formats JSON data for display, handling errors and escaping
+
+        Args:
+            json_data_text (str): The JSON data to format.
+            count_from_component_var (int): The number of entries to preview if the JSON data is a list.
+
+        Returns:
+            str: The formatted JSON data or an error message.
+        """
         try:
             json_obj = json.loads(json_data_text)
             if isinstance(json_obj, list):
@@ -129,16 +142,16 @@ def show_json_modal(json_data, json_preview_entries_count=2, key_prefix=None):
     else:
         modal = Modal(title="JSON Preview", key=modal_key)
         with modal.container():
-            '''st.markdown(
-                f"""
-                <div style="max-height:60vh; overflow-y:auto;">
-                    <pre style="white-space:pre-wrap; word-break:break-word; color:var(--text-color);">
-                        {format_json_content(json_data, json_preview_entries_count)}
-                    </pre>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )'''
+            #'''st.markdown(
+            #    f"""
+            #    <div style="max-height:60vh; overflow-y:auto;">
+            #        <pre style="white-space:pre-wrap; word-break:break-word; color:var(--text-color);">
+            #            {format_json_content(json_data, json_preview_entries_count)}
+            #        </pre>
+            #    </div>
+            #    """,
+            #    unsafe_allow_html=True,
+            #)'''
             st.code(
                 format_json_content(json_data, json_preview_entries_count),
                 language='json')
